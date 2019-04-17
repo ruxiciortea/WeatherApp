@@ -8,13 +8,13 @@
 
 /* Begin PBXBuildFile section */
 		EBFD89242261C60D00DFCD19 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBFD89232261C60D00DFCD19 /* AppDelegate.swift */; };
-		EBFD89262261C60D00DFCD19 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBFD89252261C60D00DFCD19 /* ViewController.swift */; };
 		EBFD89292261C60D00DFCD19 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EBFD89272261C60D00DFCD19 /* Main.storyboard */; };
 		EBFD892B2261C60E00DFCD19 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EBFD892A2261C60E00DFCD19 /* Assets.xcassets */; };
 		EBFD892E2261C60E00DFCD19 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EBFD892C2261C60E00DFCD19 /* LaunchScreen.storyboard */; };
 		EBFD89392261C60E00DFCD19 /* WeatherAppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBFD89382261C60E00DFCD19 /* WeatherAppTests.swift */; };
 		EBFD89442261C60E00DFCD19 /* WeatherAppUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBFD89432261C60E00DFCD19 /* WeatherAppUITests.swift */; };
 		EBFD89562262279500DFCD19 /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBFD89552262279500DFCD19 /* Location.swift */; };
+		EBFD89582263478E00DFCD19 /* ForecastViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBFD89572263478E00DFCD19 /* ForecastViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -37,7 +37,6 @@
 /* Begin PBXFileReference section */
 		EBFD89202261C60D00DFCD19 /* WeatherApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WeatherApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EBFD89232261C60D00DFCD19 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		EBFD89252261C60D00DFCD19 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		EBFD89282261C60D00DFCD19 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		EBFD892A2261C60E00DFCD19 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		EBFD892D2261C60E00DFCD19 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -49,6 +48,7 @@
 		EBFD89432261C60E00DFCD19 /* WeatherAppUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherAppUITests.swift; sourceTree = "<group>"; };
 		EBFD89452261C60E00DFCD19 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		EBFD89552262279500DFCD19 /* Location.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Location.swift; sourceTree = "<group>"; };
+		EBFD89572263478E00DFCD19 /* ForecastViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForecastViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -144,7 +144,7 @@
 		EBFD89532261C65300DFCD19 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				EBFD89252261C60D00DFCD19 /* ViewController.swift */,
+				EBFD89572263478E00DFCD19 /* ForecastViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -291,7 +291,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				EBFD89262261C60D00DFCD19 /* ViewController.swift in Sources */,
+				EBFD89582263478E00DFCD19 /* ForecastViewController.swift in Sources */,
 				EBFD89562262279500DFCD19 /* Location.swift in Sources */,
 				EBFD89242261C60D00DFCD19 /* AppDelegate.swift in Sources */,
 			);
@@ -470,7 +470,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = Z4NZC2AMSY;
-				INFOPLIST_FILE = WeatherApp/Info.plist;
+				INFOPLIST_FILE = "$(SRCROOT)/Other/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -488,7 +488,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = Z4NZC2AMSY;
-				INFOPLIST_FILE = WeatherApp/Info.plist;
+				INFOPLIST_FILE = "$(SRCROOT)/Other/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
