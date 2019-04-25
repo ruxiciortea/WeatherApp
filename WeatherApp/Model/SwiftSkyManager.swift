@@ -119,31 +119,6 @@ class SwiftSkyManager: NSObject {
     
     // MARK: - Private Functions
     
-    private static func getConditionsForJson(_ json: [String: Any]) -> WeatherConditions? {
-        if let precipIntensity = json["precipIntensity"] as? Double,
-            let precipProbability = json["precipProbability"] as? Double,
-            let humidity = json["humidity"] as? Double,
-            let windSpeed = json["windSpeed"] as? Double,
-            let cloudCover = json["cloudCover"] as? Double,
-            let visibility = json["visibility"] as? Double,
-            let time = json["time"] as? Double,
-            let summary = json["summary"] as? String,
-            let icon = json["icon"] as? String {
-            let requestedConditions = WeatherConditions(precipIntensity: precipIntensity,
-                                     precipProbability: precipProbability,
-                                     humidity: humidity,
-                                     windSpeed: windSpeed,
-                                     cloudCover: cloudCover,
-                                     visibility: visibility,
-                                     time: time,
-                                     summary: summary,
-                                     icon: icon)
-            return requestedConditions
-        } else {
-            return nil
-        }
-    }
-    
     private static func getCurrentConditions(json: [String: Any]) -> CurrentWeatherConditions? {
         let currentConditions = CurrentWeatherConditions.init()
         
@@ -216,6 +191,31 @@ class SwiftSkyManager: NSObject {
         }
         
         return dailyConditionsArray
+    }
+    
+    private static func getConditionsForJson(_ json: [String: Any]) -> WeatherConditions? {
+        if let precipIntensity = json["precipIntensity"] as? Double,
+            let precipProbability = json["precipProbability"] as? Double,
+            let humidity = json["humidity"] as? Double,
+            let windSpeed = json["windSpeed"] as? Double,
+            let cloudCover = json["cloudCover"] as? Double,
+            let visibility = json["visibility"] as? Double,
+            let time = json["time"] as? Double,
+            let summary = json["summary"] as? String,
+            let icon = json["icon"] as? String {
+            let requestedConditions = WeatherConditions(precipIntensity: precipIntensity,
+                                                        precipProbability: precipProbability,
+                                                        humidity: humidity,
+                                                        windSpeed: windSpeed,
+                                                        cloudCover: cloudCover,
+                                                        visibility: visibility,
+                                                        time: time,
+                                                        summary: summary,
+                                                        icon: icon)
+            return requestedConditions
+        } else {
+            return nil
+        }
     }
     
 }
