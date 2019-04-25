@@ -39,5 +39,22 @@ extension ForecastViewController: UITableViewDataSource, UITableViewDelegate {
         return cell
     }
     
+    // MARK: - TableView Delegate
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let Cluj = Location.getLocations()[0]
+        
+        SwiftSkyManager.getCurrentForecastFor(Cluj) { (conditions) in
+            print("CURRENTLY: ", conditions)
+        }
+        
+        SwiftSkyManager.getHourlyForecastFor(Cluj) { (conditions) in
+            print("HOURLY: ", conditions)
+        }
+        
+        SwiftSkyManager.getDailyForecastForLocation(Cluj) { (conditions) in
+            print("DAILY: ", conditions)
+        }
+    }
     
 }
