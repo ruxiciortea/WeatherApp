@@ -12,11 +12,17 @@ class ForecastViewController: UIViewController {
 
     @IBOutlet weak var locationsTableView: UITableView!
     
+    let forecastManager = SwiftSkyManager()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         locationsTableView.dataSource = self
         locationsTableView.delegate = self
+        
+        forecastManager.getForecast(location: Location.getLocations().first!) { (currentConditions, hourlyConditions, dailyConditions) in
+            self.locationsTableView.reloadData()
+        }
     }
     
 }
@@ -42,19 +48,6 @@ extension ForecastViewController: UITableViewDataSource, UITableViewDelegate {
     // MARK: - TableView Delegate
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let Cluj = Location.getLocations()[0]
-        
-        SwiftSkyManager.getCurrentForecastFor(Cluj) { (conditions) in
-            print("CURRENTLY: ", conditions)
-        }
-        
-        SwiftSkyManager.getHourlyForecastFor(Cluj) { (conditions) in
-            print("HOURLY: ", conditions)
-        }
-        
-        SwiftSkyManager.getDailyForecastForLocation(Cluj) { (conditions) in
-            print("DAILY: ", conditions)
-        }
     }
     
 }

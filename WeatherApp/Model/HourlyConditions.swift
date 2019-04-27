@@ -6,12 +6,4 @@
 //  Copyright © 2019 Ruxandra Ciortea. All rights reserved.
 //
 
-import UIKit
-
-class HourlyWeatherConditions: WeatherConditions {
-    
-    override init() {
-        super.init()
-    }
-    
-}
+typealias HourlyWeatherConditions = WeatherConditions

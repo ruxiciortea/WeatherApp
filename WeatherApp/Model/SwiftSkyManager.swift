@@ -10,15 +10,34 @@ import UIKit
 import Alamofire
 import CoreLocation
 
-private let key = SecretDarkSkyAPIKey.sharedInstance.getKey()
-let darkSkyForecastURL = "https://api.darksky.net/forecast/"
+fileprivate enum ConditionsRequestType {
+    case currently
+    case hourly
+    case daily
+}
+
+typealias RequestCompletionBlock = (CurrentWeatherConditions?, [HourlyWeatherConditions]?, [DailyWeatherConditions]?) -> Void
 
 class SwiftSkyManager: NSObject {
     
+    private let key = SecretDarkSkyAPIKey.sharedInstance.getKey()
+    private let darkSkyForecastURL = "https://api.darksky.net/forecast/"
+    private let queue = DispatchQueue.init(label: "backroung queue",
+                                          qos: .background,
+                                          attributes: .concurrent)
+    private lazy var requestTypeStatusDictionary: [ConditionsRequestType: Bool] = [ConditionsRequestType.currently : false,
+                                                                                   ConditionsRequestType.hourly : false,
+                                                                                   ConditionsRequestType.daily : false]
+    private var forecastRequestCompletionHandler: RequestCompletionBlock?
+    
+    private var currentlyConditions: CurrentWeatherConditions?
+    private var hourlyConditions: [HourlyWeatherConditions]?
+    private var dailyConditions: [DailyWeatherConditions]?
+    
     // MARK: - Requests
     
-    static func getCurrentForecastFor(_ location: Location,
-                                      completionHandlere: @escaping (WeatherConditions?) -> Void) {
+    private func getCurrentForecastFor(_ location: Location,
+                                      completionHandlere: @escaping (CurrentWeatherConditions?) -> Void) {
         
         let latitudeString = String(location.latitude)
         let longitudeString = String(location.longitude)
@@ -33,7 +52,7 @@ class SwiftSkyManager: NSObject {
                                        "longitude": longitudeString,
                                        "exclude": ["minutely", "alerts", "flags"],
                                        "units": "si"]
-            ).responseJSON { (response) in
+            ).responseJSON(queue: queue, completionHandler: { (response) in
                 guard response.result.error == nil,
                     let json = response.result.value as? [String: Any],
                     let currenly = json["currently"] as? [String: Any] else {
@@ -42,21 +61,21 @@ class SwiftSkyManager: NSObject {
                     return
                 }
                 
-                if let currentConditions = getCurrentConditions(json: currenly) {
+                if let currentConditions = self.getCurrentConditions(json: currenly) {
                     completionHandlere(currentConditions)
                 } else {
                     completionHandlere(nil)
                 }
-        }
+        })
                                         
     }
     
-    static func getHourlyForecastFor(_ location: Location,
+    private func getHourlyForecastFor(_ location: Location,
                                      completionHandler: @escaping ([HourlyWeatherConditions]?) -> Void) {
         
         let latitudeString = String(location.latitude)
         let longitudeString = String(location.longitude)
-        let URL = darkSkyForecastURL +
+        let URL = self.darkSkyForecastURL +
                   SecretDarkSkyAPIKey.sharedInstance.getKey() + "/" +
                   latitudeString + "," + longitudeString
         
@@ -66,7 +85,7 @@ class SwiftSkyManager: NSObject {
                                        "longitude": longitudeString,
                                        "exclude": ["minutely", "alerts", "flags"],
                                        "units": "si"]
-            ).responseJSON { (response) in
+            ).responseJSON(queue: queue, completionHandler: { (response) in
                 guard response.result.error == nil,
                     let json = response.result.value as? [String: Any],
                     let hourly = json["hourly"] as? [String: Any] else {
@@ -75,16 +94,16 @@ class SwiftSkyManager: NSObject {
                     return
                 }
                 
-                if let hourlyConditions = getHourlyConditions(json: hourly) {
+                if let hourlyConditions = self.getHourlyConditions(json: hourly) {
                     completionHandler(hourlyConditions)
                 } else {
                     completionHandler(nil)
                 }
-        }
+        })
         
     }
     
-    static func getDailyForecastForLocation(_ location: Location,
+    private func getDailyForecastForLocation(_ location: Location,
                                             completionHandler: @escaping ([DailyWeatherConditions]?) -> Void) {
         
         let latitudeString = String(location.latitude)
@@ -99,7 +118,7 @@ class SwiftSkyManager: NSObject {
                                        "longitude": longitudeString,
                                        "exclude": ["minutely", "alerts", "flags"],
                                        "units": "si"]
-            ).responseJSON { (response) in
+            ).responseJSON(queue: queue, completionHandler: { (response) in
                 guard response.result.error == nil,
                     let json = response.result.value as? [String: Any],
                     let daily = json["daily"] as? [String: Any] else {
@@ -108,18 +127,61 @@ class SwiftSkyManager: NSObject {
                     return
                 }
                 
-                if let dailyConditions = getDailyConditions(json: daily) {
+                if let dailyConditions = self.getDailyConditions(json: daily) {
                     completionHandler(dailyConditions)
                 } else {
                     completionHandler(nil)
                 }
+        })
+        
+    }
+    
+    func getForecast(location: Location,
+                     completionHandler: @escaping RequestCompletionBlock) {
+        self.forecastRequestCompletionHandler = completionHandler
+        
+        for key in self.requestTypeStatusDictionary.keys {
+            self.requestTypeStatusDictionary[key] = false
         }
+
+        DispatchQueue.global(qos: .background).async {
+            self.getCurrentForecastFor(location) { (conditions) in
+                self.currentlyConditions = conditions
+                
+                self.didReceiveResponse(requestType: .currently)
+            }
+            
+            self.getHourlyForecastFor(location) { (conditions) in
+                self.hourlyConditions = conditions
+                
+                self.didReceiveResponse(requestType: .hourly)
+            }
+            
+            self.getDailyForecastForLocation(location) { (conditions) in
+                self.dailyConditions = conditions
+                
+                self.didReceiveResponse(requestType: .daily)
+            }
+        }
+    }
+    
+    private func didReceiveResponse(requestType: ConditionsRequestType) {
+        self.requestTypeStatusDictionary[requestType] = true
+        
+        for value in self.requestTypeStatusDictionary.values {
+            if !value {
+                return
+            }
+        }
+        
+        // call block
+        self.forecastRequestCompletionHandler?(self.currentlyConditions, self.hourlyConditions, self.dailyConditions)
         
     }
     
     // MARK: - Private Functions
     
-    private static func getCurrentConditions(json: [String: Any]) -> CurrentWeatherConditions? {
+    private func getCurrentConditions(json: [String: Any]) -> CurrentWeatherConditions? {
         let currentConditions = CurrentWeatherConditions.init()
         
         if let conditions = getConditionsForJson(json) {
@@ -139,7 +201,7 @@ class SwiftSkyManager: NSObject {
         return currentConditions
     }
     
-    private static func getHourlyConditions(json: [String: Any]) -> [HourlyWeatherConditions]? {
+    private func getHourlyConditions(json: [String: Any]) -> [HourlyWeatherConditions]? {
         var horlyConditionsArray: [HourlyWeatherConditions] = []
         
         guard let hours = json["data"] as? [[String: Any]] else {
@@ -160,7 +222,7 @@ class SwiftSkyManager: NSObject {
         return horlyConditionsArray
     }
     
-    private static func getDailyConditions(json: [String: Any]) -> [DailyWeatherConditions]? {
+    private func getDailyConditions(json: [String: Any]) -> [DailyWeatherConditions]? {
         var dailyConditionsArray: [DailyWeatherConditions] = []
         
         guard let days = json["data"] as? [[String: Any]] else {
@@ -193,7 +255,7 @@ class SwiftSkyManager: NSObject {
         return dailyConditionsArray
     }
     
-    private static func getConditionsForJson(_ json: [String: Any]) -> WeatherConditions? {
+    private func getConditionsForJson(_ json: [String: Any]) -> WeatherConditions? {
         if let precipIntensity = json["precipIntensity"] as? Double,
             let precipProbability = json["precipProbability"] as? Double,
             let humidity = json["humidity"] as? Double,
