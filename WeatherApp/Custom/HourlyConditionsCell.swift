@@ -31,7 +31,7 @@ class HourlyConditionsCell: UITableViewCell {
         self.hourLabel.text = "\(hour):00"
         self.hourLabel.font = self.hourLabel.font.withSize(fontSize)
         
-        self.iconLabel.text = weatherConditions.icon
+        self.iconLabel.text = weatherConditions.summary
         self.iconLabel.font = self.iconLabel.font.withSize(fontSize)
 
         self.temperatureLabel.text = "\(Int(weatherConditions.temperature))ºC"

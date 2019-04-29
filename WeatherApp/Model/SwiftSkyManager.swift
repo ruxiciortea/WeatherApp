@@ -35,7 +35,7 @@ class SwiftSkyManager: NSObject {
     private var hourlyConditions: [HourlyWeatherConditions]?
     private var dailyConditions: [DailyWeatherConditions]?
     
-    private let maxHoursArrayCapacity = 25
+    private let maxHoursArrayCapacity = 24
     
     // MARK: - Get Forecast
     
@@ -251,6 +251,7 @@ extension SwiftSkyManager {
         // Make sure to get forecast only for the next 24 hours
         
         if hours.count > maxHoursArrayCapacity {
+            hours.removeFirst()
             hours.removeLast(hours.count - maxHoursArrayCapacity)
         }
         

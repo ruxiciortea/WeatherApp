@@ -9,9 +9,9 @@
 import UIKit
 
 extension UITableView {
-    
+
     func setCornerRadius(cornerRadius: CGFloat) {
         self.layer.cornerRadius = cornerRadius
     }
-    
+
 }

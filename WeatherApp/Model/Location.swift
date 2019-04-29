@@ -33,7 +33,7 @@ class Location: NSObject {
     static func getLocations() -> [Location] {
         var locationsArray: [Location] = []
         
-        let location1 = Location.init(city: "Cluj", country: "Romania", latitude: 46.770439, longitude: 23.591423)
+        let location1 = Location.init(city: "Cluj-Napoca", country: "Romania", latitude: 46.770439, longitude: 23.591423)
         locationsArray.append(location1)
         
         let location2 = Location.init(city: "Bucharest", country: "Romania", latitude: 44.43225, longitude: 26.10626)

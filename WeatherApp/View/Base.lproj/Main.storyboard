@@ -18,7 +18,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="eXh-cy-HNb">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="eXh-cy-HNb">
                                 <rect key="frame" x="16" y="536" width="382" height="310"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
@@ -30,19 +30,19 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5GN-HJ-l4K">
-                                                    <rect key="frame" x="16" y="0.0" width="59.5" height="59.5"/>
+                                                    <rect key="frame" x="16" y="0.0" width="60" height="59.5"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="25"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="v6h-2q-o3m">
-                                                    <rect key="frame" x="306.5" y="0.0" width="59.5" height="59.5"/>
+                                                    <rect key="frame" x="306" y="0.0" width="60" height="59.5"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="25"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="Label" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xFF-ZL-ZfP">
-                                                    <rect key="frame" x="83.5" y="0.0" width="215" height="59.5"/>
+                                                    <rect key="frame" x="84" y="0.0" width="214" height="59.5"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="25"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -74,7 +74,28 @@
                             </tableView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Iud-A2-GCJ">
                                 <rect key="frame" x="0.0" y="88" width="414" height="448"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oH0-js-1Zj">
+                                        <rect key="frame" x="171.5" y="201.5" width="71" height="45"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="30"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nsP-Zh-wQN">
+                                        <rect key="frame" x="166" y="151.5" width="82.5" height="42"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="35"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstItem="oH0-js-1Zj" firstAttribute="height" secondItem="Iud-A2-GCJ" secondAttribute="height" multiplier="0.1" id="0Gi-hh-Lyp"/>
+                                    <constraint firstItem="oH0-js-1Zj" firstAttribute="top" secondItem="nsP-Zh-wQN" secondAttribute="bottom" constant="8" id="EKj-nC-uL3"/>
+                                    <constraint firstItem="nsP-Zh-wQN" firstAttribute="centerX" secondItem="Iud-A2-GCJ" secondAttribute="centerX" id="J93-Zi-7vr"/>
+                                    <constraint firstItem="oH0-js-1Zj" firstAttribute="centerY" secondItem="Iud-A2-GCJ" secondAttribute="centerY" id="NcZ-pY-q62"/>
+                                    <constraint firstItem="oH0-js-1Zj" firstAttribute="centerX" secondItem="Iud-A2-GCJ" secondAttribute="centerX" id="ahx-T4-dv6"/>
+                                </constraints>
                             </view>
                         </subviews>
                         <color key="backgroundColor" red="0.46619987489999998" green="0.71559476850000003" blue="0.83531457190000002" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
@@ -92,6 +113,8 @@
                     </view>
                     <navigationItem key="navigationItem" id="aYx-4V-Txf"/>
                     <connections>
+                        <outlet property="currentSumaryLabel" destination="nsP-Zh-wQN" id="4Zx-ZO-ws0"/>
+                        <outlet property="currentTemperatureLabel" destination="oH0-js-1Zj" id="9Vy-4U-esc"/>
                         <outlet property="currnetConditionsView" destination="Iud-A2-GCJ" id="Cny-XZ-Kgf"/>
                         <outlet property="hourlyConditionsTableView" destination="eXh-cy-HNb" id="UbL-cn-7Ew"/>
                     </connections>

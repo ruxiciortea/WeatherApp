@@ -11,26 +11,42 @@ import UIKit
 class ForecastViewController: UIViewController {
 
     @IBOutlet weak var currnetConditionsView: UIView! 
+    @IBOutlet weak var currentTemperatureLabel: UILabel!
+    @IBOutlet weak var currentSumaryLabel: UILabel!
     @IBOutlet weak var hourlyConditionsTableView: UITableView! {
         didSet {
-            hourlyConditionsTableView.setCornerRadius(cornerRadius: 10)
+            self.hourlyConditionsTableView.setCornerRadius(cornerRadius: hourlyTableViewCornerRadius)
         }
     }
     
+    private let hourlyTableViewCornerRadius: CGFloat = 5
     private let cellHeightConstant: CGFloat = 60
     private let forecastManager = SwiftSkyManager()
+    private let testLocation = Location.getLocations().first!
     
-    private var currentConditions = CurrentWeatherConditions()
+    private var currentConditions = CurrentWeatherConditions() {
+        didSet {
+            self.setCurrentConditionLabels()
+        }
+    }
     private var hourlyConditions: [HourlyWeatherConditions] = []
     private var dailyConditions: [DailyWeatherConditions] = []
 
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .lightContent 
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         hourlyConditionsTableView.dataSource = self
         hourlyConditionsTableView.delegate = self
         
-        self.getForecatForLocation(Location.getLocations().first!)
+        self.makeNavigationBarTransparent()
+        self.navigationController?.navigationBar.barTintColor = .white
+        self.navigationController?.navigationBar.topItem?.title = testLocation.city
+        
+        self.getForecatForLocation(testLocation)
     }
     
 }
@@ -49,7 +65,7 @@ extension ForecastViewController: UITableViewDataSource, UITableViewDelegate {
         cell.setHourlyConditionsCell(weatherConditions: hourlyConditions[indexPath.row])
         cell.alpha = 0
         
-        UIView.animate(withDuration: 0.1, animations: { cell.alpha = 1 })
+        UIView.animate(withDuration: 0.05, animations: { cell.alpha = 1 })
 
         return cell
     }
@@ -84,6 +100,25 @@ extension ForecastViewController {
             
             self.hourlyConditionsTableView.reloadData()
         }
+    }
+    
+    private func setCurrentConditionLabels() {
+        let screenHeight = UIScreen.main.bounds.height
+        let temperatureFontSize = screenHeight * 0.05
+        let sumaryFontSize = screenHeight * 0.06
+
+        self.currentTemperatureLabel.text = "\(Int(self.currentConditions.temperature))ºC"
+        self.currentSumaryLabel.font = self.currentSumaryLabel.font.withSize(sumaryFontSize)
+        
+        self.currentSumaryLabel.text = "\(currentConditions.summary)"
+        self.currentTemperatureLabel.font = self.currentTemperatureLabel.font.withSize(temperatureFontSize)
+    }
+    
+    private func makeNavigationBarTransparent() {
+        self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: UIBarMetrics.default)
+        self.navigationController?.navigationBar.shadowImage = UIImage()
+        self.navigationController?.navigationBar.isTranslucent = true
+        self.navigationController?.view.backgroundColor = UIColor.clear
     }
     
 }
