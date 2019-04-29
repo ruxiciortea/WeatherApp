@@ -35,6 +35,8 @@ class SwiftSkyManager: NSObject {
     private var hourlyConditions: [HourlyWeatherConditions]?
     private var dailyConditions: [DailyWeatherConditions]?
     
+    private let maxHoursArrayCapacity = 25
+    
     // MARK: - Get Forecast
     
     func getForecast(location: Location,
@@ -242,8 +244,14 @@ extension SwiftSkyManager {
     private func getHourlyConditions(json: [String: Any]) -> [HourlyWeatherConditions]? {
         var horlyConditionsArray: [HourlyWeatherConditions] = []
         
-        guard let hours = json["data"] as? [[String: Any]] else {
+        guard var hours = json["data"] as? [[String: Any]] else {
             return nil
+        }
+        
+        // Make sure to get forecast only for the next 24 hours
+        
+        if hours.count > maxHoursArrayCapacity {
+            hours.removeLast(hours.count - maxHoursArrayCapacity)
         }
         
         for hour in hours {

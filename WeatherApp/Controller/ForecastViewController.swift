@@ -10,7 +10,12 @@ import UIKit
 
 class ForecastViewController: UIViewController {
 
-    @IBOutlet weak var hourlyConditionsTableView: UITableView!
+    @IBOutlet weak var currnetConditionsView: UIView! 
+    @IBOutlet weak var hourlyConditionsTableView: UITableView! {
+        didSet {
+            hourlyConditionsTableView.setCornerRadius(cornerRadius: 10)
+        }
+    }
     
     private let cellHeightConstant: CGFloat = 60
     private let forecastManager = SwiftSkyManager()
@@ -42,7 +47,10 @@ extension ForecastViewController: UITableViewDataSource, UITableViewDelegate {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell") as! HourlyConditionsCell
         
         cell.setHourlyConditionsCell(weatherConditions: hourlyConditions[indexPath.row])
+        cell.alpha = 0
         
+        UIView.animate(withDuration: 0.1, animations: { cell.alpha = 1 })
+
         return cell
     }
     
@@ -52,7 +60,11 @@ extension ForecastViewController: UITableViewDataSource, UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return cellHeightConstant
+        return UIScreen.main.bounds.height * 0.075
+
+    }
+    
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
     }
     
 }
