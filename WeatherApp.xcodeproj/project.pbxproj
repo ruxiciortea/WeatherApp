@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		4DA0ACA8D49D211BA97C0BCB /* Pods_WeatherAppTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7FF60918DC17025F9CC99EE6 /* Pods_WeatherAppTests.framework */; };
 		97EE0EC59897BC41219BD723 /* Pods_WeatherAppUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8C3FE839D03BEF684BC96987 /* Pods_WeatherAppUITests.framework */; };
+		EB05C78E2277182300BF8472 /* HourlyConditionsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB05C78D2277182300BF8472 /* HourlyConditionsCell.swift */; };
 		EB8D9AE82268C81D008D3FF3 /* WeatherConditions.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB8D9AE72268C81D008D3FF3 /* WeatherConditions.swift */; };
 		EB8D9AEA2268DAF1008D3FF3 /* SwiftSkyManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB8D9AE92268DAF1008D3FF3 /* SwiftSkyManager.swift */; };
 		EB8D9AEC226B5609008D3FF3 /* SecretDarkSkyAPIKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB8D9AEB226B5609008D3FF3 /* SecretDarkSkyAPIKey.swift */; };
@@ -53,6 +54,7 @@
 		9D404CCF4FC762E2CF9E1EED /* Pods_WeatherApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_WeatherApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		AF0B1991AD5A34BAD1A37FDC /* Pods-WeatherApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WeatherApp.release.xcconfig"; path = "Target Support Files/Pods-WeatherApp/Pods-WeatherApp.release.xcconfig"; sourceTree = "<group>"; };
 		CF95415087EC21AAB29786DD /* Pods-WeatherApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WeatherApp.debug.xcconfig"; path = "Target Support Files/Pods-WeatherApp/Pods-WeatherApp.debug.xcconfig"; sourceTree = "<group>"; };
+		EB05C78D2277182300BF8472 /* HourlyConditionsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HourlyConditionsCell.swift; sourceTree = "<group>"; };
 		EB8D9AE72268C81D008D3FF3 /* WeatherConditions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherConditions.swift; sourceTree = "<group>"; };
 		EB8D9AE92268DAF1008D3FF3 /* SwiftSkyManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftSkyManager.swift; sourceTree = "<group>"; };
 		EB8D9AEB226B5609008D3FF3 /* SecretDarkSkyAPIKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecretDarkSkyAPIKey.swift; sourceTree = "<group>"; };
@@ -126,6 +128,14 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		EB05C78C227717F500BF8472 /* Custom */ = {
+			isa = PBXGroup;
+			children = (
+				EB05C78D2277182300BF8472 /* HourlyConditionsCell.swift */,
+			);
+			path = Custom;
+			sourceTree = "<group>";
+		};
 		EBFD89172261C60D00DFCD19 = {
 			isa = PBXGroup;
 			children = (
@@ -155,6 +165,7 @@
 				EBFD89512261C64000DFCD19 /* Model */,
 				EBFD89522261C64E00DFCD19 /* View */,
 				EBFD89532261C65300DFCD19 /* Controller */,
+				EB05C78C227717F500BF8472 /* Custom */,
 			);
 			path = WeatherApp;
 			sourceTree = "<group>";
@@ -446,6 +457,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EB05C78E2277182300BF8472 /* HourlyConditionsCell.swift in Sources */,
 				EB8D9AEC226B5609008D3FF3 /* SecretDarkSkyAPIKey.swift in Sources */,
 				EB8D9AE82268C81D008D3FF3 /* WeatherConditions.swift in Sources */,
 				EB8D9AEA2268DAF1008D3FF3 /* SwiftSkyManager.swift in Sources */,

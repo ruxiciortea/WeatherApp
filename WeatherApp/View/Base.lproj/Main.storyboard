@@ -20,18 +20,58 @@
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="eXh-cy-HNb">
                                 <rect key="frame" x="0.0" y="596" width="414" height="300"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="backgroundColor" red="0.28673309087753296" green="0.36018455028533936" blue="0.8196527361869812" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="300" id="ICP-Vq-ZyZ"/>
                                 </constraints>
+                                <color key="sectionIndexColor" red="0.96862745100000003" green="0.97647058819999999" blue="0.97647058819999999" alpha="0.84705882349999995" colorSpace="calibratedRGB"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="Cell" id="0Jz-0W-5U2">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="Cell" rowHeight="44" id="0Jz-0W-5U2" customClass="HourlyConditionsCell" customModule="WeatherApp" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="414" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="0Jz-0W-5U2" id="ljG-vE-cLm">
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5GN-HJ-l4K">
+                                                    <rect key="frame" x="16" y="0.0" width="59.5" height="43.5"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="25"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="v6h-2q-o3m">
+                                                    <rect key="frame" x="338.5" y="0.0" width="59.5" height="43.5"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="25"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xFF-ZL-ZfP">
+                                                    <rect key="frame" x="263" y="0.0" width="59.5" height="43.5"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="25"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="bottom" secondItem="xFF-ZL-ZfP" secondAttribute="bottom" id="NTE-VT-j54"/>
+                                                <constraint firstItem="v6h-2q-o3m" firstAttribute="top" secondItem="ljG-vE-cLm" secondAttribute="top" id="YZE-Cn-eKA"/>
+                                                <constraint firstItem="5GN-HJ-l4K" firstAttribute="leading" secondItem="ljG-vE-cLm" secondAttribute="leading" constant="16" id="aGC-pU-wcN"/>
+                                                <constraint firstItem="xFF-ZL-ZfP" firstAttribute="top" secondItem="ljG-vE-cLm" secondAttribute="top" id="b8x-VE-grt"/>
+                                                <constraint firstAttribute="trailing" secondItem="v6h-2q-o3m" secondAttribute="trailing" constant="16" id="esi-rY-Cs1"/>
+                                                <constraint firstItem="5GN-HJ-l4K" firstAttribute="centerY" secondItem="ljG-vE-cLm" secondAttribute="centerY" id="iJH-KU-QHX"/>
+                                                <constraint firstItem="5GN-HJ-l4K" firstAttribute="top" secondItem="ljG-vE-cLm" secondAttribute="top" id="kdD-kF-Gvs"/>
+                                                <constraint firstAttribute="bottom" secondItem="5GN-HJ-l4K" secondAttribute="bottom" id="qRB-ei-ehf"/>
+                                                <constraint firstItem="v6h-2q-o3m" firstAttribute="leading" secondItem="xFF-ZL-ZfP" secondAttribute="trailing" constant="16" id="vdq-lw-HE2"/>
+                                                <constraint firstAttribute="bottom" secondItem="v6h-2q-o3m" secondAttribute="bottom" id="xY1-Qc-AFi"/>
+                                            </constraints>
                                         </tableViewCellContentView>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <color key="tintColor" red="0.96862745100000003" green="0.97647058819999999" blue="0.97647058819999999" alpha="0.84705882349999995" colorSpace="calibratedRGB"/>
+                                        <connections>
+                                            <outlet property="hourLabel" destination="5GN-HJ-l4K" id="m4x-ue-caf"/>
+                                            <outlet property="iconLabel" destination="xFF-ZL-ZfP" id="IxP-So-8XP"/>
+                                            <outlet property="temperatureLabel" destination="v6h-2q-o3m" id="W9w-5j-tAc"/>
+                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
@@ -45,7 +85,7 @@
                         <viewLayoutGuide key="safeArea" id="FLf-Ti-7qf"/>
                     </view>
                     <connections>
-                        <outlet property="locationsTableView" destination="eXh-cy-HNb" id="UbL-cn-7Ew"/>
+                        <outlet property="hourlyConditionsTableView" destination="eXh-cy-HNb" id="UbL-cn-7Ew"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="a2E-hl-g0Z" userLabel="First Responder" sceneMemberID="firstResponder"/>

@@ -10,37 +10,38 @@ import UIKit
 
 class ForecastViewController: UIViewController {
 
-    @IBOutlet weak var locationsTableView: UITableView!
+    @IBOutlet weak var hourlyConditionsTableView: UITableView!
     
-    let forecastManager = SwiftSkyManager()
+    private let cellHeightConstant: CGFloat = 60
+    private let forecastManager = SwiftSkyManager()
     
+    private var currentConditions = CurrentWeatherConditions()
+    private var hourlyConditions: [HourlyWeatherConditions] = []
+    private var dailyConditions: [DailyWeatherConditions] = []
+
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        locationsTableView.dataSource = self
-        locationsTableView.delegate = self
+        hourlyConditionsTableView.dataSource = self
+        hourlyConditionsTableView.delegate = self
         
-        forecastManager.getForecast(location: Location.getLocations().first!) { (currentConditions, hourlyConditions, dailyConditions) in
-            self.locationsTableView.reloadData()
-        }
+        self.getForecatForLocation(Location.getLocations().first!)
     }
     
 }
-
 
 extension ForecastViewController: UITableViewDataSource, UITableViewDelegate {
     
     // MARK: - TableView DataSource
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 3
+        return self.hourlyConditions.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "Cell") as! UITableViewCell
-        let location = Location.getLocations()[indexPath.row]
+        let cell = tableView.dequeueReusableCell(withIdentifier: "Cell") as! HourlyConditionsCell
         
-        cell.textLabel?.text = location.city
+        cell.setHourlyConditionsCell(weatherConditions: hourlyConditions[indexPath.row])
         
         return cell
     }
@@ -48,6 +49,29 @@ extension ForecastViewController: UITableViewDataSource, UITableViewDelegate {
     // MARK: - TableView Delegate
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return cellHeightConstant
+    }
+    
+}
+
+extension ForecastViewController {
+    
+    // MARK: - Private Functions
+    
+    private func getForecatForLocation(_ location: Location) {
+        forecastManager.getForecast(location: location) {
+            (currentConditions, hourlyConditions, dailyConditions) in
+            if currentConditions != nil, hourlyConditions != nil, dailyConditions != nil {
+                self.currentConditions = currentConditions!
+                self.hourlyConditions = hourlyConditions!
+                self.dailyConditions = dailyConditions!
+            }
+            
+            self.hourlyConditionsTableView.reloadData()
+        }
     }
     
 }

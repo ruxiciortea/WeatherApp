@@ -6,4 +6,4 @@
 //  Copyright © 2019 Ruxandra Ciortea. All rights reserved.
 //
 
-typealias HourlyWeatherConditions = WeatherConditions
+typealias HourlyWeatherConditions = CurrentWeatherConditions
