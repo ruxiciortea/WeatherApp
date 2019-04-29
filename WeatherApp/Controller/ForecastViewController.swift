@@ -13,13 +13,8 @@ class ForecastViewController: UIViewController {
     @IBOutlet weak var currnetConditionsView: UIView! 
     @IBOutlet weak var currentTemperatureLabel: UILabel!
     @IBOutlet weak var currentSumaryLabel: UILabel!
-    @IBOutlet weak var hourlyConditionsTableView: UITableView! {
-        didSet {
-            self.hourlyConditionsTableView.setCornerRadius(cornerRadius: hourlyTableViewCornerRadius)
-        }
-    }
+    @IBOutlet weak var hourlyConditionsTableView: UITableView!
     
-    private let hourlyTableViewCornerRadius: CGFloat = 5
     private let cellHeightConstant: CGFloat = 60
     private let forecastManager = SwiftSkyManager()
     private let testLocation = Location.getLocations().first!
@@ -31,10 +26,8 @@ class ForecastViewController: UIViewController {
     }
     private var hourlyConditions: [HourlyWeatherConditions] = []
     private var dailyConditions: [DailyWeatherConditions] = []
-
-    override var preferredStatusBarStyle: UIStatusBarStyle {
-        return .lightContent 
-    }
+    
+    private var lastContentOffSet: CGFloat = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -60,12 +53,15 @@ extension ForecastViewController: UITableViewDataSource, UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let defaultAnimationDuration = 0.1
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell") as! HourlyConditionsCell
-        
-        cell.setHourlyConditionsCell(weatherConditions: hourlyConditions[indexPath.row])
         cell.alpha = 0
         
-        UIView.animate(withDuration: 0.05, animations: { cell.alpha = 1 })
+        cell.setHourlyConditionsCell(weatherConditions: hourlyConditions[indexPath.row])
+        
+        UIView.animate(withDuration: defaultAnimationDuration) {
+            cell.alpha = 1
+        }
 
         return cell
     }
@@ -77,10 +73,6 @@ extension ForecastViewController: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return UIScreen.main.bounds.height * 0.075
-
-    }
-    
-    func scrollViewDidScroll(_ scrollView: UIScrollView) {
     }
     
 }

@@ -10,9 +10,21 @@ import UIKit
 
 class HourlyConditionsCell: UITableViewCell {
     
-    @IBOutlet weak var hourLabel: UILabel!
-    @IBOutlet weak var temperatureLabel: UILabel!
-    @IBOutlet weak var iconLabel: UILabel!
+    @IBOutlet weak var hourLabel: UILabel! {
+        didSet {
+            self.hourLabel.textColor = .white
+        }
+    }
+    @IBOutlet weak var temperatureLabel: UILabel! {
+        didSet {
+            self.temperatureLabel.textColor = .white
+        }
+    }
+    @IBOutlet weak var sumaryLabel: UILabel! {
+        didSet {
+            self.sumaryLabel.textColor = .white
+        }
+    }
     
     override func awakeFromNib() {
         let cellsSeparatorRightInset: CGFloat = 16
@@ -31,8 +43,8 @@ class HourlyConditionsCell: UITableViewCell {
         self.hourLabel.text = "\(hour):00"
         self.hourLabel.font = self.hourLabel.font.withSize(fontSize)
         
-        self.iconLabel.text = weatherConditions.summary
-        self.iconLabel.font = self.iconLabel.font.withSize(fontSize)
+        self.sumaryLabel.text = weatherConditions.summary
+        self.sumaryLabel.font = self.sumaryLabel.font.withSize(fontSize)
 
         self.temperatureLabel.text = "\(Int(weatherConditions.temperature))ºC"
         self.temperatureLabel.font = self.temperatureLabel.font.withSize(fontSize)
