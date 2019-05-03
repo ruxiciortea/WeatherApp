@@ -36,13 +36,13 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="v6h-2q-o3m">
-                                                    <rect key="frame" x="306" y="0.0" width="60" height="59.5"/>
+                                                    <rect key="frame" x="338" y="0.0" width="60" height="59.5"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="25"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="Label" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xFF-ZL-ZfP">
-                                                    <rect key="frame" x="84" y="0.0" width="214" height="59.5"/>
+                                                    <rect key="frame" x="84" y="0.0" width="246" height="59.5"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="25"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -75,9 +75,9 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Iud-A2-GCJ">
                                 <rect key="frame" x="0.0" y="88" width="414" height="448"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oH0-js-1Zj">
-                                        <rect key="frame" x="171.5" y="201.5" width="71" height="45"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="30"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oH0-js-1Zj">
+                                        <rect key="frame" x="170.5" y="201.5" width="73.5" height="45"/>
+                                        <fontDescription key="fontDescription" name=".SFNSDisplay" family=".SF NS Display" pointSize="30"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
                                     </label>
@@ -111,7 +111,13 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="FLf-Ti-7qf"/>
                     </view>
-                    <navigationItem key="navigationItem" id="aYx-4V-Txf"/>
+                    <navigationItem key="navigationItem" id="aYx-4V-Txf">
+                        <barButtonItem key="leftBarButtonItem" style="plain" systemItem="search" id="l00-bB-YHP">
+                            <connections>
+                                <segue destination="9CU-Th-PMI" kind="showDetail" id="rcl-Ht-Yl6"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="currentSumaryLabel" destination="nsP-Zh-wQN" id="4Zx-ZO-ws0"/>
                         <outlet property="currentTemperatureLabel" destination="oH0-js-1Zj" id="9Vy-4U-esc"/>
@@ -122,6 +128,21 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="a2E-hl-g0Z" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1928.985507246377" y="83.705357142857139"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="hMG-hD-Qic">
+            <objects>
+                <viewController id="9CU-Th-PMI" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Zvk-bn-lpk">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="lCf-DS-KKy"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="1VQ-vX-hEK" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1929" y="841"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="hry-oK-iXm">

@@ -52,3 +52,20 @@ class Location: NSObject {
     }
     
 }
+
+extension Location {
+    
+    static func requestLocationPermission(delegate: CLLocationManagerDelegate) -> CLLocationManager {
+        let locationManager = CLLocationManager()
+        locationManager.requestWhenInUseAuthorization()
+        
+        if CLLocationManager.locationServicesEnabled() {
+            locationManager.delegate = delegate
+            locationManager.desiredAccuracy = kCLLocationAccuracyBest
+            locationManager.startUpdatingLocation()
+        }
+        
+        return locationManager
+    }
+    
+}

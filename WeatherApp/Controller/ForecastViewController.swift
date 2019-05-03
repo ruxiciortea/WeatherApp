@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import CoreLocation
 
 class ForecastViewController: UIViewController {
 
@@ -18,13 +19,18 @@ class ForecastViewController: UIViewController {
     private let cellHeightConstant: CGFloat = 60
     private let forecastManager = SwiftSkyManager()
     private let testLocation = Location.getLocations().first!
+    private var locationManager: CLLocationManager?
     
     private var currentConditions = CurrentWeatherConditions() {
         didSet {
             self.setCurrentConditionLabels()
         }
     }
-    private var hourlyConditions: [HourlyWeatherConditions] = []
+    private var hourlyConditions: [HourlyWeatherConditions] = [] {
+        didSet {
+            self.hourlyConditionsTableView.reloadData()
+        }
+    }
     private var dailyConditions: [DailyWeatherConditions] = []
     
     private var lastContentOffSet: CGFloat = 0
@@ -32,19 +38,28 @@ class ForecastViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        hourlyConditionsTableView.dataSource = self
-        hourlyConditionsTableView.delegate = self
+        self.hourlyConditionsTableView.dataSource = self
+        self.hourlyConditionsTableView.delegate = self
         
         self.makeNavigationBarTransparent()
         self.navigationController?.navigationBar.barTintColor = .white
         self.navigationController?.navigationBar.topItem?.title = testLocation.city
+        self.currentTemperatureLabel.text = ""
+        self.currentSumaryLabel.text = ""
         
         self.getForecatForLocation(testLocation)
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+//        self.requestLocationPermission()
+        self.locationManager = Location.requestLocationPermission(delegate: self)
+    }
+    
 }
 
-extension ForecastViewController: UITableViewDataSource, UITableViewDelegate {
+extension ForecastViewController: UITableViewDataSource, UITableViewDelegate, CLLocationManagerDelegate {
     
     // MARK: - TableView DataSource
     
@@ -75,6 +90,19 @@ extension ForecastViewController: UITableViewDataSource, UITableViewDelegate {
         return UIScreen.main.bounds.height * 0.075
     }
     
+    // MARK: - LocationManager Delegate
+    
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        guard let currentLocation: CLLocationCoordinate2D = manager.location?.coordinate else {
+            return
+        }
+        
+        print("LATITUDE: ", currentLocation.latitude, "LONGITUDE: ", currentLocation.longitude)
+        self.getForecatForLocation(Location(city: "", country: "",
+                                            latitude: currentLocation.latitude,
+                                            longitude: currentLocation.longitude))
+    }
+    
 }
 
 extension ForecastViewController {
@@ -89,8 +117,6 @@ extension ForecastViewController {
                 self.hourlyConditions = hourlyConditions!
                 self.dailyConditions = dailyConditions!
             }
-            
-            self.hourlyConditionsTableView.reloadData()
         }
     }
     
