@@ -34,7 +34,7 @@ class HourlyConditionsCell: UITableViewCell {
     
     func setHourlyConditionsCell(weatherConditions: HourlyWeatherConditions) {
         let screenHeight = UIScreen.main.bounds.height
-        let fontSize = screenHeight * 0.03
+        let fontSize = screenHeight * 0.028
 
         let date = Date(timeIntervalSince1970: weatherConditions.time)
         let calendar = Calendar.current

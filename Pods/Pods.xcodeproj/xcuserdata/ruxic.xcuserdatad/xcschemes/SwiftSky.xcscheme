@@ -14,7 +14,7 @@
             buildForArchiving = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "A8DB06B0155F7DEFB80B946380BC08B9"
+               BlueprintIdentifier = "863C914FC70481F9FE201554D792213F"
                BuildableName = "SwiftSky.framework"
                BlueprintName = "SwiftSky"
                ReferencedContainer = "container:Pods.xcodeproj">

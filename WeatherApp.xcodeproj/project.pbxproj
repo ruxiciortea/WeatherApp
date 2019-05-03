@@ -11,6 +11,7 @@
 		97EE0EC59897BC41219BD723 /* Pods_WeatherAppUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8C3FE839D03BEF684BC96987 /* Pods_WeatherAppUITests.framework */; };
 		EB05C78E2277182300BF8472 /* HourlyConditionsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB05C78D2277182300BF8472 /* HourlyConditionsCell.swift */; };
 		EB05C790227753A600BF8472 /* RoundedTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB05C78F227753A600BF8472 /* RoundedTableView.swift */; };
+		EB05C792227C6C5600BF8472 /* SearchLocationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB05C791227C6C5600BF8472 /* SearchLocationViewController.swift */; };
 		EB8D9AE82268C81D008D3FF3 /* WeatherConditions.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB8D9AE72268C81D008D3FF3 /* WeatherConditions.swift */; };
 		EB8D9AEA2268DAF1008D3FF3 /* SwiftSkyManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB8D9AE92268DAF1008D3FF3 /* SwiftSkyManager.swift */; };
 		EB8D9AEC226B5609008D3FF3 /* SecretDarkSkyAPIKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB8D9AEB226B5609008D3FF3 /* SecretDarkSkyAPIKey.swift */; };
@@ -57,6 +58,7 @@
 		CF95415087EC21AAB29786DD /* Pods-WeatherApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WeatherApp.debug.xcconfig"; path = "Target Support Files/Pods-WeatherApp/Pods-WeatherApp.debug.xcconfig"; sourceTree = "<group>"; };
 		EB05C78D2277182300BF8472 /* HourlyConditionsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HourlyConditionsCell.swift; sourceTree = "<group>"; };
 		EB05C78F227753A600BF8472 /* RoundedTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedTableView.swift; sourceTree = "<group>"; };
+		EB05C791227C6C5600BF8472 /* SearchLocationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchLocationViewController.swift; sourceTree = "<group>"; };
 		EB8D9AE72268C81D008D3FF3 /* WeatherConditions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherConditions.swift; sourceTree = "<group>"; };
 		EB8D9AE92268DAF1008D3FF3 /* SwiftSkyManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftSkyManager.swift; sourceTree = "<group>"; };
 		EB8D9AEB226B5609008D3FF3 /* SecretDarkSkyAPIKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecretDarkSkyAPIKey.swift; sourceTree = "<group>"; };
@@ -216,6 +218,7 @@
 			isa = PBXGroup;
 			children = (
 				EBFD89572263478E00DFCD19 /* ForecastViewController.swift */,
+				EB05C791227C6C5600BF8472 /* SearchLocationViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -439,6 +442,7 @@
 			inputPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-WeatherApp/Pods-WeatherApp-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
+				"${BUILT_PRODUCTS_DIR}/KeychainSwift/KeychainSwift.framework",
 				"${BUILT_PRODUCTS_DIR}/SwiftSky/SwiftSky.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
@@ -446,6 +450,7 @@
 			);
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/KeychainSwift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftSky.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -463,6 +468,7 @@
 				EB05C790227753A600BF8472 /* RoundedTableView.swift in Sources */,
 				EB05C78E2277182300BF8472 /* HourlyConditionsCell.swift in Sources */,
 				EB8D9AEC226B5609008D3FF3 /* SecretDarkSkyAPIKey.swift in Sources */,
+				EB05C792227C6C5600BF8472 /* SearchLocationViewController.swift in Sources */,
 				EB8D9AE82268C81D008D3FF3 /* WeatherConditions.swift in Sources */,
 				EB8D9AEA2268DAF1008D3FF3 /* SwiftSkyManager.swift in Sources */,
 				EBFD89582263478E00DFCD19 /* ForecastViewController.swift in Sources */,
